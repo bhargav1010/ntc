@@ -1,0 +1,15 @@
+numpy
+pandas
+texthero
+pywebio
+scikit-learn
+tensorflow-text
+tensorflow_hub
+tensorflow_text
+uvicorn
+gunicorn==19.9.0
+uvloop
+httptools
+pickle
+flask
+joblib
