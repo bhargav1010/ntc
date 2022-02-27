@@ -3,7 +3,7 @@ pandas
 texthero
 pywebio
 scikit-learn
-tensorflow
+tensorflow-cpu
 uvicorn
 gunicorn==19.9.0
 uvloop
