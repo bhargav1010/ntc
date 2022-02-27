@@ -1,5 +1,4 @@
-node_modules
-.psd
-.pdf
-test
-spec
+*.psd
+*.pdf
+/test
+/spec
