@@ -17,7 +17,7 @@ import tensorflow_hub as hub
 import tensorflow_text as text
 import texthero as hero
 from joblib import dump,load
-ntc_model=pickle.load(open('C:/Users/badiy/Desktop/ntc_model','rb'))#ml model
+ntc_model=pickle.load(open('ntc_model','rb'))#ml model
 ss=load('C:/Users/badiy/Desktop/std_scaler.bin')#standardscaler model
 
 app=Flask(__name__)
