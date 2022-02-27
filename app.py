@@ -36,10 +36,16 @@ def predict():
     vectors_=bert_encoder(bp_)['pooled_output']
     vec=ss.transform(vectors_)
     prediction=ntc_model.predict(vec)
-    put_text('prediction = %r' % le_name_mapping[prediction[0]])  
+    put_text('prediction = %r' % le_name_mapping[prediction[0]])
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--port", type=int, default=8080)
+    args = parser.parse_args()
+
+    start_server(predict, port=args.port)
     
-app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
-app.run(host='localhost',port=88)
+#app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
+#app.run(host='localhost',port=88)
 
 
 
