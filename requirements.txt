@@ -1,5 +1,6 @@
 numpy
 pandas
+flask
 texthero
 pywebio
 scikit-learn
