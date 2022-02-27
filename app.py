@@ -1,39 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[1]:
-
-
-pip install pywebio
-
-
-# In[2]:
-
-
-pip install tensorflow-text 
-
-
-# In[3]:
-
-
-pip install flask
-
-
-# In[4]:
-
-
-pip install waitress
-
-
-# In[5]:
-
-
-pip install scikit-learn==1.0.2
-
-
-# In[ ]:
-
-
 from pywebio.platform.flask import webio_view
 from pywebio import STATIC_PATH
 from flask import Flask
@@ -74,10 +40,6 @@ def predict():
     
 app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 app.run(host='localhost',port=88)
-
-
-# In[ ]:
-
 
 
 
