@@ -18,7 +18,7 @@ import tensorflow_text as text
 import texthero as hero
 from joblib import dump,load
 ntc_model=pickle.load(open('ntc_model','rb'))#ml model
-ss=load('C:/Users/badiy/Desktop/std_scaler.bin')#standardscaler model
+ss=load('std_scaler.bin')#standardscaler model
 
 app=Flask(__name__)
 bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3") 
