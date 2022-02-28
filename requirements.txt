@@ -11,5 +11,5 @@ joblib
 pickle-mixin
 uvicorn
 gunicorn==19.9.0
-mod-wsgi
+mod_wsgi
 
