@@ -38,12 +38,7 @@ def predict():
     prediction=ntc_model.predict(vec)
     put_text('prediction = %r' % le_name_mapping[prediction[0]])
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--port", type=int, default=8080)
-    args = parser.parse_args()
-
-    start_server(predict, port=args.port)
-    
+    app.run(debug=True)
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 #app.run(host='localhost',port=88)
 
