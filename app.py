@@ -1,21 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
-from pywebio.platform.flask import webio_view
-from pywebio import STATIC_PATH
 from flask import Flask
 from pywebio.input import*
-from pywebio.output import*
-from pywebio import start_server
-from pywebio.session import *
-from pywebio.pin import *
+import pywebio
 import pickle
 import numpy as np
-import pywebio
+import texthero as hero
 import pandas as pd
 import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_text as text
-import texthero as hero
 from joblib import dump,load
 ntc_model=pickle.load(open('ntc_model','rb'))#ml model
 ss=load('std_scaler.bin')#standardscaler model
