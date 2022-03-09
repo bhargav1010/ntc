@@ -11,4 +11,5 @@ joblib
 pickle-mixin
 uvicorn
 gunicorn
+gevent
 
