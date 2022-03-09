@@ -10,5 +10,4 @@ tensorflow_text
 joblib
 uvicorn
 gunicorn
-gevent
 
