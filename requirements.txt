@@ -1,11 +1,2 @@
-flask
-texthero
-pywebio
-tensorflow-cpu
-tensorflow_hub
-tensorflow_text
-joblib
-uvicorn
-gunicorn
-gevent
+
 
