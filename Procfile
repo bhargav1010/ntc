@@ -1,2 +1,2 @@
-web: gunicorn app:app --timeout 10
-worker: gunicorn --workers=9 app:app --timeout 10
+web: gunicorn app:app
+worker: gunicorn hello:app --max-requests 1200
