@@ -1,2 +1,2 @@
 web: gunicorn app:app
-worker: gunicorn hello:app --max-requests 1200
+worker: gunicorn app:app --max-requests 1200
