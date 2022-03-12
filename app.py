@@ -18,7 +18,6 @@ import argparse
 from pywebio import start_server
 
 import pickle
-import numpy as 
 ntc_model=pickle.load(open('ntc_model','rb'))#ml model
 ss=load('std_scaler.bin')#standardscaler model
 
