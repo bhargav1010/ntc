@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-from flask import Flask
-from pywebio.input import*
 import pywebio
 import pickle
 import numpy as np
@@ -11,6 +9,16 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_text as text
 from joblib import dump,load
+from pywebio.platform.flask import webio_view
+from pywebio import STATIC_PATH
+from flask import Flask, send_from_directory
+from pywebio.input import *
+from pywebio.output import *
+import argparse
+from pywebio import start_server
+
+import pickle
+import numpy as 
 ntc_model=pickle.load(open('ntc_model','rb'))#ml model
 ss=load('std_scaler.bin')#standardscaler model
 
@@ -32,7 +40,13 @@ def predict():
     prediction=ntc_model.predict(vec)
     put_text('prediction = %r' % le_name_mapping[prediction[0]])
 if __name__ == '__main__':
-    app.run(debug=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--port", type=int, default=8080)
+    args = parser.parse_args()
+
+    start_server(predict, port=args.port)
+#if __name__ == '__main__':
+#   app.run(debug=True)
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 #app.run(host='localhost',port=88)
 
