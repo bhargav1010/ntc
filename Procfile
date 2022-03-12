@@ -1,2 +1,2 @@
-web: gunicorn main:app --log-file - --log-level debug --preload --workers=1
+web: gunicorn main:app --timeout=5 
 
