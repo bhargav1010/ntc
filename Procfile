@@ -1,2 +1,1 @@
-web: gunicorn app:app --preload
-worker: gunicorn app:app --workers=9 --timeout=10
+web: python app.py --port=$PORT
