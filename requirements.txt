@@ -24,7 +24,7 @@ google-pasta
 grpcio
 h5py==2.9.0
 hyperopt
-idna=
+idna
 itsdangerous
 Keras-Preprocessing
 kiwisolver
