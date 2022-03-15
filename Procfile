@@ -1,2 +1,2 @@
-web: python main.py --port=$PORT
-worker: gunicorn main:app
+web: python main.py --port=$PORT --preload
+worker: gunicorn main:app --preload
