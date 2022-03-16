@@ -2,9 +2,7 @@
 # coding: utf-8
 import pywebio
 import pickle
-import numpy as np
 import texthero as hero
-import pandas as pd
 import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_text as text
@@ -17,7 +15,6 @@ from pywebio.output import *
 import argparse
 from pywebio import start_server
 
-import pickle
 app=Flask(__name__)
 
 ntc_model=pickle.load(open('ntc_model','rb'))#ml model
@@ -39,18 +36,26 @@ def predict():
     vec=ss.transform(vectors_)
     prediction=ntc_model.predict(vec)
     put_text('prediction = %r' % le_name_mapping[prediction[0]])
-app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
+#app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
+
+from threading import Thread
+from testbot import test 
+
+Thread(target=predict).start()
+app.run(debug=True,host='0.0.0.0')
+
+
 '''import os
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)'''
-    
-if __name__ == '__main__':
+
+''''if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", type=int, default=8080)
     args = parser.parse_args()
-    start_server(predict, port=args.port)
+    start_server(predict, port=args.port)'''
 #if __name__ == '__main__':
 #   app.run(debug=True)
 
