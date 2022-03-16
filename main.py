@@ -20,6 +20,7 @@ app=Flask(__name__)
 ntc_model=pickle.load(open('ntc_model','rb'))#ml model
 ss=load('std_scaler.bin')#standardscaler model
 
+
 bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3") 
 bert_encoder = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4")
 
