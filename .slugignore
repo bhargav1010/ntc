@@ -3,6 +3,8 @@
 *.pdf
 /test
 /spec
+.whl
+*.whl
 
 # Git
 .git
