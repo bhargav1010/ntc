@@ -1,1 +1,1 @@
-web: python main.py:app --port=$PORT --preload --max-requests=1200 --workers=2
+web: python app.py:app --port=$PORT --preload --max-requests=1200 --workers=2
