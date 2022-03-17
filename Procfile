@@ -1,2 +1,2 @@
-web: python main.py --port=$PORT --preload --max-requests=1200 --workers=3
-worker: python main.py --port=$PORT --preload --max-requests=1200 --workers=3
+web: gunicorn main.py:app --port=$PORT --preload --max-requests=1200 --workers=2
+worker: gunicorn main.py:app --port=$PORT --preload --max-requests=1200 --workers=2
