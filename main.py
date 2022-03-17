@@ -39,11 +39,11 @@ def predict():
     put_text('prediction = %r' % le_name_mapping[prediction[0]])
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
-'''from threading import Thread
+from threading import Thread
 from testbot import test 
 
-Thread(target=predict).start()
-app.run(debug=True,host='0.0.0.0')'''
+Thread(target=predict()).start()
+app.run(debug=True,host='0.0.0.0')
 
 
 '''import os
@@ -51,12 +51,12 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)'''
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", type=int, default=8080)
     args, unknown = parser.parse_known_args()
-    start_server(predict, port=args.port)
+    start_server(predict, port=args.port)'''
 #if __name__ == '__main__':
 #   app.run(debug=True)
 
