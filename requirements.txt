@@ -1,11 +1,11 @@
-flask
-texthero
-pywebio
+pip==22.0.4
+flask==1.1.4
+texthero==1.1.0
+pywebio==1.5.2
 tensorflow-cpu==2.8.0
-tensorflow_hub
-tensorflow_text
+tensorflow_hub==0.12.0
+tensorflow_text==2.8.1
 joblib
 uvicorn
 gunicorn
-pip==22.0.4
 
