@@ -17,18 +17,21 @@ from pywebio import start_server
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ["TFHUB_CACHE_DIR"] = "gs://my-bucket/tfhub-modules-cache"
+
 app=Flask(__name__)
 
-ntc_model=pickle.load(open('ntc_model','rb'))#ml model
-ss=load('std_scaler.bin')#standardscaler model
+@app.route('/',methods=['GET','POST'])
 
-
-bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3") 
-bert_encoder = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4")
-
-le_name_mapping={0: 'BUSINESS', 1: 'EDUCATION', 2: 'ENTERTAINMENT', 3: 'FOOD & DRINK', 4: 'POLITICS', 5: 'SPORTS', 6: 'TECH', 7: 'WELLNESS'}
-@app.route('/predict',methods=['POST'])
-def predict():
+def index():
+    ntc_model=pickle.load(open('ntc_model','rb'))#ml model
+    ss=load('std_scaler.bin')#standardscaler model
+    
+    
+    bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
+    bert_encoder = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4")
+    
+    le_name_mapping={0: 'BUSINESS', 1: 'EDUCATION', 2: 'ENTERTAINMENT', 3: 'FOOD & DRINK', 4: 'POLITICS', 5: 'SPORTS', 6: 'TECH', 7: 'WELLNESS'}
+    
     text= input("Enter The Data", type=TEXT)
     #text = textarea('Text Area', rows=3, placeholder='Some text')
     text=str(text)
@@ -40,6 +43,11 @@ def predict():
     prediction=ntc_model.predict(vec)
     return put_text('prediction = %r' % le_name_mapping[prediction[0]])
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 '''
 from threading import Thread
 from testbot import test 
@@ -47,19 +55,15 @@ from testbot import test
 Thread(target=predict()).start()
 app.run(debug=True,host='0.0.0.0')
 '''
-'''
-import os
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)'''
 
+'''
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", type=int, default=8080)
     args, unknown = parser.parse_known_args()
     start_server(predict, port=args.port)
-
+'''
 #if __name__ == '__main__':
 #   app.run(debug=True)
 
