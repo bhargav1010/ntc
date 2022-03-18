@@ -1,10 +1,11 @@
 flask
 texthero
 pywebio
-tensorflow-cpu
+tensorflow
 tensorflow_hub
 tensorflow_text
 joblib
 uvicorn
 gunicorn
+pip==22.0.4
 
