@@ -1,7 +1,7 @@
 flask
 texthero
 pywebio
-tensorflow
+tensorflow==2.8.0
 tensorflow_hub
 tensorflow_text
 joblib
