@@ -44,10 +44,14 @@ def index():
     return put_text('prediction = %r' % le_name_mapping[prediction[0]])
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
 
+'''
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True,host='0.0.0.0', port=port)
+    app.run(debug=True,host='0.0.0.0', port=port)'''
 '''
 from threading import Thread
 from testbot import test 
