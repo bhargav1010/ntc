@@ -1,5 +1,5 @@
 pip==22.0.4
-flask
+Flask==2.0.3
 texthero==1.1.0
 waitress==2.1.1
 pywebio
