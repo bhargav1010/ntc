@@ -10,7 +10,9 @@ import tensorflow_text as text
 from joblib import dump,load
 from pywebio.platform.flask import webio_view
 from pywebio import STATIC_PATH
-from flask import Flask, send_from_directory, request
+from flask import Flask, render_template
+from flask import Flask, request
+from flask import Flask, send_from_directory
 from pywebio.input import *
 from pywebio.output import *
 import argparse
@@ -40,7 +42,7 @@ def index():
         vectors_=bert_encoder(bp_)['pooled_output']
         vec=ss.transform(vectors_)
         prediction=ntc_model.predict(vec)
-        put_text('prediction = %r' % le_name_mapping[prediction[0]])
+        return render_template(put_text('prediction = %r' % le_name_mapping[prediction[0]]))
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
 if __name__ == "__main__":
