@@ -10,7 +10,7 @@ import tensorflow_text as text
 from joblib import dump,load
 from pywebio.platform.flask import webio_view
 from pywebio import STATIC_PATH
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from pywebio.input import *
 from pywebio.output import *
 import argparse
@@ -21,7 +21,7 @@ os.environ["TFHUB_CACHE_DIR"] = "gs://my-bucket/tfhub-modules-cache"
 
 app=Flask(__name__)
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/',methods=["POST","GET"])
 
 def index():
     if request.method in ['HEAD', 'GET']:
