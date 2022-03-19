@@ -17,6 +17,8 @@ import argparse
 from pywebio import start_server
 
 import os
+os.environ["TFHUB_MODEL_LOAD_FORMAT"] = "UNCOMPRESSED"
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ["TFHUB_CACHE_DIR"] = "gs://my-bucket/tfhub-modules-cache"
 
@@ -40,7 +42,6 @@ def index():
         vec=ss.transform(vectors_)
         prediction=ntc_model.predict(vec)
         put_text('prediction = %r' % le_name_mapping[prediction[0]])
-        return str(le_name_mapping[prediction[0]])
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
 if __name__ == "__main__":
