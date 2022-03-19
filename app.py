@@ -24,7 +24,6 @@ app=Flask(__name__)
 @app.route('/',methods=["POST","GET"])
 
 def index():
-    if request.method in ['HEAD', 'GET']:
         ntc_model=pickle.load(open('ntc_model','rb'))#ml model
         ss=load('std_scaler.bin')#standardscaler model
         bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
@@ -40,8 +39,7 @@ def index():
         vec=ss.transform(vectors_)
         prediction=ntc_model.predict(vec)
         put_text('prediction = %r' % le_name_mapping[prediction[0]])
-    else:
-        return 'OK'
+        return str(le_name_mapping[prediction[0]])
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
 if __name__ == "__main__":
