@@ -24,22 +24,24 @@ app=Flask(__name__)
 @app.route('/',methods=['GET','POST'])
 
 def index():
-    ntc_model=pickle.load(open('ntc_model','rb'))#ml model
-    ss=load('std_scaler.bin')#standardscaler model
-    bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
-    bert_encoder = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4")
-    le_name_mapping={0: 'BUSINESS', 1: 'EDUCATION', 2: 'ENTERTAINMENT', 3: 'FOOD & DRINK', 4: 'POLITICS', 5: 'SPORTS', 6: 'TECH', 7: 'WELLNESS'}
-    text= input("Enter The Data", type=TEXT)
-    #text = textarea('Text Area', rows=3, placeholder='Some text')
-    text=str(text)
-    d_ = pd.DataFrame([text], columns = ['txt'])
-    text=hero.clean(d_['txt'])#d_['txt'].pipe(hero.clean, custom_pipeline)
-    bp_=bert_preprocess(text)
-    vectors_=bert_encoder(bp_)['pooled_output']
-    vec=ss.transform(vectors_)
-    prediction=ntc_model.predict(vec)
-    put_text('prediction = %r' % le_name_mapping[prediction[0]])
-    return 'OK'
+    if request.method in ['HEAD', 'GET']:
+        ntc_model=pickle.load(open('ntc_model','rb'))#ml model
+        ss=load('std_scaler.bin')#standardscaler model
+        bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
+        bert_encoder = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4")
+        le_name_mapping={0: 'BUSINESS', 1: 'EDUCATION', 2: 'ENTERTAINMENT', 3: 'FOOD & DRINK', 4: 'POLITICS', 5: 'SPORTS', 6: 'TECH', 7: 'WELLNESS'}
+        text= input("Enter The Data", type=TEXT)
+        #text = textarea('Text Area', rows=3, placeholder='Some text')
+        text=str(text)
+        d_ = pd.DataFrame([text], columns = ['txt'])
+        text=hero.clean(d_['txt'])#d_['txt'].pipe(hero.clean, custom_pipeline)
+        bp_=bert_preprocess(text)
+        vectors_=bert_encoder(bp_)['pooled_output']
+        vec=ss.transform(vectors_)
+        prediction=ntc_model.predict(vec)
+        put_text('prediction = %r' % le_name_mapping[prediction[0]])
+    else:
+        return 'OK'
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
 if __name__ == "__main__":
