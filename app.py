@@ -16,6 +16,9 @@ from pywebio.output import *
 import argparse
 from pywebio import start_server
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ["TFHUB_CACHE_DIR"] = "gs://my-bucket/tfhub-modules-cache"
 
 app=Flask(__name__)
 
