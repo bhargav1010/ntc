@@ -28,7 +28,7 @@ app=Flask(__name__)
 @app.route('/',methods=["POST","GET"])
 
 def index():
-    if request.method == "POST":
+    if request.method == "GET":
         ntc_model=pickle.load(open('ntc_model','rb'))#ml model
         ss=load('std_scaler.bin')#standardscaler model
         bert_preprocess = hub.load("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
