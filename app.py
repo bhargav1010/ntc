@@ -43,7 +43,7 @@ def index():
         vectors_=bert_encoder(bp_)['pooled_output']
         vec=ss.transform(vectors_)
         prediction=ntc_model.predict(vec)
-        return put_text('prediction = %r' % le_name_mapping[prediction[0]])
+        put_text('prediction = %r' % le_name_mapping[prediction[0]])
 #app.add_url_rule('/ntc','webio_view',webio_view(predict),methods=['GET','POST','OPTIONS'])
 
 if __name__ == "__main__":
